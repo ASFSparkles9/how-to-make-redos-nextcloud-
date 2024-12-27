@@ -40,7 +40,7 @@
     В MySQL выполните следующие команды:
     ```sql
     CREATE DATABASE nextcloud CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-    CREATE USER 'nextclouduser'@'localhost' IDENTIFIED BY 'secure_password';
+    CREATE USER 'nextclouduser'@'localhost' IDENTIFIED BY 'student';
     GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextclouduser'@'localhost';
     FLUSH PRIVILEGES;
     EXIT;
@@ -87,7 +87,7 @@
     ```nginx
     server {
         listen 80;
-        server_name localhost;
+        server_name 172.16.4.2;
 
         root /var/www/nextcloud;
         index index.php index.html;
@@ -190,7 +190,7 @@
     - **Данные для базы данных**:
         - Имя базы данных: `nextcloud`
         - Имя пользователя: `nextclouduser`
-        - Пароль: `secure_password`
+        - Пароль: `student`
     - **Путь к данным**: `/var/www/nextcloud/data`.
 
 3. **Завершите установку**.
