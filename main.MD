@@ -114,6 +114,14 @@ sudo systemctl daemon-reload
 sudo systemctl enable node_exporter --now
 sudo systemctl status node_exporter
 ```
+```bash
+id prometheus
+sudo useradd --no-create-home --shell /bin/false prometheus
+sudo chown prometheus:prometheus /usr/local/bin/node_exporter
+sudo systemctl daemon-reload
+sudo systemctl restart node_exporter
+```
+
 ---
 
 ## Проверка доступности
