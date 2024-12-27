@@ -98,16 +98,16 @@ sudo nano /etc/systemd/system/node_exporter.service
 ```bash
 [Unit]
 Description=Prometheus Node Exporter
-Wants=network-online.target
-After=network-online.target
+After=network.target
 
 [Service]
-User=node_exporter
-ExecStart=/usr/bin/node_exporter
-Restart=on-failure
+User=prometheus
+Group=prometheus
+ExecStart=/usr/local/bin/node_exporter
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
+
 ```
 ```bash
 sudo systemctl daemon-reload
@@ -117,7 +117,7 @@ sudo systemctl status node_exporter
 ```bash
 id prometheus
 sudo useradd --no-create-home --shell /bin/false prometheus
-sudo chown prometheus:prometheus /usr/local/bin/node_exporter
+sudo chown prometheus:prometheus /usr/bin/node_exporter
 sudo systemctl daemon-reload
 sudo systemctl restart node_exporter
 ```
