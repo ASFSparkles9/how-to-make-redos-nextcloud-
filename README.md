@@ -16,6 +16,15 @@
     ```bash
     sudo systemctl enable --now nginx mariadb php-fpm
     ```
+В файле:
+```bash
+nano /etc/hosts 
+```
+Добавить:
+```bash
+server_name 172.16.4.2;
+```
+nano /etc/hosts 
 
 ---
 
