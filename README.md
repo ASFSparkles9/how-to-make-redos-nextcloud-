@@ -22,7 +22,7 @@ nano /etc/hosts
 ```
 Добавить:
 ```bash
-server_name 172.16.4.2;
+172.16.4.2 nextcloud.local
 ```
 nano /etc/hosts 
 
@@ -154,13 +154,6 @@ nano /etc/hosts
     sudo restorecon -R /var/www/nextcloud
     ```
 
-2. **Настройте файрвол**:
-    ```bash
-    sudo firewall-cmd --permanent --add-service=http
-    sudo firewall-cmd --permanent --add-service=https
-    sudo firewall-cmd --reload
-    ```
-
 ---
 
 ## Шаг 7: Оптимизация PHP
@@ -191,21 +184,12 @@ nano /etc/hosts
 ## Шаг 8: Завершение настройки Nextcloud
 
 1. **Перейдите в браузере на адрес сервера**:
-    ```
-    http://<ваш_IP_или_домен>
-    ```
-
-2. **Заполните форму**:
-    - **Данные для базы данных**:
-        - Имя базы данных: `nextcloud`
-        - Имя пользователя: `nextclouduser`
-        - Пароль: `student`
-    - **Путь к данным**: `/var/www/nextcloud/data`.
  ```bash
 sudo chown -R root:root /var/lib/php/session
 sudo chown -R nginx:nginx /var/lib/php/session
 sudo chmod 700 /var/lib/php/session
 ```
+ http://172.16.4.2
 
 3. **Завершите установку**.
 
