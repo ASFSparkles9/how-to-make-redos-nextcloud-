@@ -193,11 +193,31 @@
         - Пароль: `student`
     - **Путь к данным**: `/var/www/nextcloud/data`.
 
+sudo chown -R root:root /var/lib/php/session
+sudo chown -R nginx:nginx /var/lib/php/session
+sudo chmod 700 /var/lib/php/session
+
+
 3. **Завершите установку**.
 
 ---
 
 Теперь ваш Nextcloud настроен и готов к использованию на базе Nginx и MySQL в RedOS! Если возникнут проблемы, обращайтесь за помощью.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Удаление установленных компонентов и конфигураций Nextcloud
