@@ -71,26 +71,11 @@
 
 На каждом узле (RTR, SRV1, SRV2) выполните следующие шаги:
 
-1. **Создайте пользователя**:
-    ```bash
-    sudo useradd -rs /bin/false nodeusr
-    ```
-
-2. **Установите Node Exporter**:
+1. **Установите Node Exporter**:
     ```bash
     sudo dnf install prometheus-node_exporter
     ```
-
-3. **Запустите и добавьте в автозагрузку**:
-    ```bash
-    sudo systemctl enable node_exporter --now
-    ```
-# Настройка службы Node Exporter
-
-## 2. Создайте юнит-файл для systemd
-
-Если юнит-файл отсутствует, создайте его вручную:
-
+2. Служба
 ```bash
 sudo nano /etc/systemd/system/node_exporter.service
 ```
@@ -103,24 +88,30 @@ After=network.target
 [Service]
 User=prometheus
 Group=prometheus
-ExecStart=/usr/local/bin/node_exporter
+ExecStart=/usr/bin/node_exporter
 
 [Install]
 WantedBy=multi-user.target
 
 ```
+2. **Запустите и добавьте в автозагрузку**:
+    ```bash
+    sudo systemctl enable node_exporter --now
+    ```
+# Настройка службы Node Exporter
+
+```bash
+sudo useradd --no-create-home --shell /bin/false prometheus
+id prometheus
+sudo chown prometheus:prometheus /usr/bin/node_exporter
+```
+
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable node_exporter --now
 sudo systemctl status node_exporter
 ```
-```bash
-id prometheus
-sudo useradd --no-create-home --shell /bin/false prometheus
-sudo chown prometheus:prometheus /usr/bin/node_exporter
-sudo systemctl daemon-reload
-sudo systemctl restart node_exporter
-```
+
 
 ---
 
@@ -159,4 +150,8 @@ sudo systemctl restart node_exporter
 
 Веб-интерфейс доступен по адресу:
 ```text
-http://<IP-адрес_SRV2>:3010
+http://172.16.5.2:3010
+http://172.16.5.2:9090
+
+
+6671
