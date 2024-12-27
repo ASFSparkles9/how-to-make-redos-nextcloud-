@@ -85,7 +85,35 @@
     ```bash
     sudo systemctl enable node_exporter --now
     ```
+# Настройка службы Node Exporter
 
+## 2. Создайте юнит-файл для systemd
+
+Если юнит-файл отсутствует, создайте его вручную:
+
+```bash
+sudo nano /etc/systemd/system/node_exporter.service
+```
+Теперь в файле
+```bash
+[Unit]
+Description=Prometheus Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=node_exporter
+ExecStart=/usr/bin/node_exporter
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+```
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable node_exporter --now
+sudo systemctl status node_exporter
+```
 ---
 
 ## Проверка доступности
