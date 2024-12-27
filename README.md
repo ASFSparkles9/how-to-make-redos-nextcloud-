@@ -198,3 +198,30 @@
 ---
 
 Теперь ваш Nextcloud настроен и готов к использованию на базе Nginx и MySQL в RedOS! Если возникнут проблемы, обращайтесь за помощью.
+
+
+# Удаление установленных компонентов и конфигураций Nextcloud
+
+## 1. Удаление установленных компонентов
+
+1. **Удалите установленные пакеты**:
+    ```bash
+    sudo dnf remove -y nginx mariadb-server mariadb php php-fpm php-mysqlnd php-xml php-gd php-mbstring php-intl php-curl php-zip
+    ```
+
+2. **Удалите все зависимости, которые больше не используются**:
+    ```bash
+    sudo dnf autoremove -y
+    ```
+
+---
+
+## 2. Удаление файлов конфигурации
+
+Удалите оставшиеся конфигурационные файлы и каталоги:
+```bash
+sudo rm -rf /etc/nginx /etc/php-fpm.d /var/www/nextcloud /var/lib/mysql
+sudo rm -rf /var/lib/mysql/
+sudo rm -rf /var/log/mariadb/
+sudo rm -rf /etc/my.cnf*
+ ```
